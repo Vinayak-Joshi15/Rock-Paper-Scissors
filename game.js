@@ -2,7 +2,7 @@ console.log("Lets Play!!");
 
 function start(){
     let n = prompt("Enter your move: ");
-    n = n.toLowerCase;
+    n = n.toLowerCase();
     return n
 }
 
@@ -51,6 +51,9 @@ function game(start,computer){
         else{
             console.log("You win with scissor");
         }
+    }
+    else{
+        console.log("It works lmao");
     }
 }
 
