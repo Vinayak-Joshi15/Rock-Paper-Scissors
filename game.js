@@ -53,7 +53,7 @@ function game(start,computer){
         }
     }
     else{
-        console.log("It works lmao");
+        console.log("Enter Rock , paper or Scissor");
     }
 }
 
