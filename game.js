@@ -1,60 +1,116 @@
-console.log("Lets Play!!");
 
-function start(){
-    let n = prompt("Enter your move: ");
-    n = n.toLowerCase();
-    return n
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+let score = 0;
+let compScore = 0;
+
+
+const playerScore = document.querySelector("#player");
+const computerScore = document.querySelector("#comp");
+
+const mid = document.querySelector("#mid");
+const final = document.querySelector("#final");
+//const button = document.querySelector("button");
+
+
+let choice = "";
+
+function Calculate(){
+    let comp = Math.floor(Math.random()*3);
+    return comp;
 }
 
-function computer(){
-    let m = Math.floor(1 + Math.random()*2);
+function playRound(choice) {
 
-    switch(m){
-        case 1:
-        return "rock";
-        break;
-        case 2:
-        return "paper"
-        break;
-        case 3:
-        return "scissor"
-        break;
-    }
-}
+        let c = choice;
+        let pc = Calculate();
+        
+        if(pc == 0){
+            if(c == "paper"){
+                mid.textContent = "Paper beats rock!!";
+                score++;
+            }
+            else if(c == "scissor"){
+                mid.textContent = "Rock beats scissors!!";
+                compScore++;
+            }
+            else{
+                mid.textContent = "Its a draw!!";
+            }
+        }else if(pc == 1){
+            if(c == "rock"){
+                mid.textContent = "Paper beats rock!!";
+                compScore++;
+            }
+            else if(c == "scissors"){
+                mid.textContent = "Scissors beats paper!!";
+                score++;
 
-function game(start,computer){
-    if(start == computer){
-        console.log("Its a Draw!!");
-    }
-    else if(start == "rock"){
-        if(computer == "paper"){
-            console.log("Computer won with paper");
+            }
+            else{
+                mid.textContent = "Its a draw!!";
+            }
+        }else if(pc == 2){
+            if(c == "rock"){
+                mid.textContent = "Rock beats scissors";
+                score++;
+            }
+            else if(c == "paper"){
+                mid.textContent = "Scissors beats paper!!";
+                compScore++;
+            }
+            else{
+                mid.textContent = "Its a draw!!";
+            }
+        }else{
+            mid.textContent = "OOPSIE!!!!!";
         }
-        else{
-            console.log("You win");
+
+        playerScore.textContent = "Your Score: "+ score;
+        computerScore.textContent = "Computer Score: " + compScore;
+
+
+        if(score == 5){
+            final.textContent = "You win!!";
+            rock.disabled = true;
+            paper.disabled = true;
+            scissors.disabled = true;
+
+
+        }else if(compScore == 5){
+            final.textContent = "Better luck next time";
+            rock.disabled = true;
+            paper.disabled = true;
+            scissors.disabled = true;
         }
+
     }
+
+
+rock.onclick = (e) => {
+    choice = "rock";
+    console.log(choice);
+    playRound(choice);
     
-    else if(start == "paper"){
-        if(computer == "scissor"){
-            console.log("Computer won with scissor");
-        }
-        else{
-            console.log("You win with paper");
-        }
-    }
+};
 
-    else if(start == "scissor"){
-        if(computer == "rock"){
-            console.log("Computer won with rock");
-        }
-        else{
-            console.log("You win with scissor");
-        }
-    }
-    else{
-        console.log("Enter Rock , paper or Scissor");
-    }
-}
+paper.onclick = (e) => {
+    choice = "paper";
+    console.log(choice);    
+    playRound(choice);
 
-game(start(),computer());
+};
+
+scissors.onclick = (e) => {
+    choice = "scissors";
+    console.log(choice);
+    playRound(choice);
+};
+
+
+//playRound();
+
+
+
+
